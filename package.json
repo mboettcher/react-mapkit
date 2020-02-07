@@ -103,6 +103,7 @@
     "build": "tsdx build",
     "test": "tsdx test --env=jsdom",
     "build-storybook": "build-storybook",
-    "deploy": "./scripts/deploy.js"
+    "deploy": "./scripts/deploy.js",
+    "prepare": "npm run build"
   }
 }
