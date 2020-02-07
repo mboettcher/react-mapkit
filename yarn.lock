@@ -1771,6 +1771,11 @@
     "@svgr/plugin-svgo" "^4.2.0"
     loader-utils "^1.2.3"
 
+"@types/apple-mapkit-js@^5.18.0":
+  version "5.18.0"
+  resolved "https://registry.yarnpkg.com/@types/apple-mapkit-js/-/apple-mapkit-js-5.18.0.tgz#35c189d6a0d8ac72b2a3bd327902ad51208c06ff"
+  integrity sha512-3hcT3HIDtthGnTdWV9vSxLnX50N+ZMspurtBbgaNixXEY3wPtjzTepdfCyihJLDPMWFRQiekYWWAYCr81QFqfw==
+
 "@types/babel__core@^7.1.0":
   version "7.1.2"
   resolved "https://registry.yarnpkg.com/@types/babel__core/-/babel__core-7.1.2.tgz#608c74f55928033fce18b99b213c16be4b3d114f"
@@ -7656,11 +7661,6 @@ map-visit@^1.0.0:
   integrity sha1-7Nyo8TFE5mDxtb1B8S80edmN+48=
   dependencies:
     object-visit "^1.0.0"
-
-mapkit-typescript@^5.18.0:
-  version "5.18.0"
-  resolved "https://registry.yarnpkg.com/mapkit-typescript/-/mapkit-typescript-5.18.0.tgz#5470182e298b6eb38e06f76d145fa017d5e563a9"
-  integrity sha512-BLYAALS67V3NipgusG6afbbVO6PC0bWmMss20Exr1F0FkTL4b6YWtKkycQYq+aIxeDPwwqyei1T72aWpyRQ+5g==
 
 markdown-to-jsx@^6.9.1, markdown-to-jsx@^6.9.3:
   version "6.10.2"
