@@ -9,17 +9,6 @@ import {
   //propsToMarkerConstructionOptions,
 } from './utils'
 
-const annotationFactory = (
-  children: React.ReactElement,
-  coordinate: mapkit.Coordinate,
-  options: mapkit.AnnotationConstructorOptions,
-): Element => {
-  const div = document.createElement('div')
-  ReactDOM.render(children, div)
-
-  return div
-}
-
 type AnnotationProps = {
   latitude: number
   longitude: number
@@ -35,11 +24,11 @@ export const Annotation: React.FC<AnnotationProps> = ({
   const { mapkit, map } = React.useContext(MapContext)
   const annotation = React.useRef<mapkit.Annotation>()
 
-  const factory = (
-    coordinate: mapkit.Coordinate,
-    options: mapkit.AnnotationConstructorOptions,
-  ): Element => {
-    return annotationFactory(children, coordinate, options)
+  const factory = (): Element => {
+    const div = document.createElement('div')
+    ReactDOM.render(children, div)
+
+    return div
   }
 
   React.useEffect(() => {
