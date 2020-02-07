@@ -15,15 +15,14 @@ See the [demo storybook](https://chrisdrackett.github.io/react-mapkit/)!
 
 ### Token generation (optional)
 
-This package includes a script you can use to generate a JWT token.
+To be able to use MapKit you need a JSON Web Token that is signed with a MapKit JS private key.
 
-At the moment this only work if you've run `yarn` within the package folder and run the script from within `react-mapkit`. This should be fixed (https://github.com/chrisdrackett/react-mapkit/issues/14)
+1. Follow the instruction to create a private key: [Creating a Maps Identifier and a Private Key](https://developer.apple.com/documentation/mapkitjs/creating_a_maps_identifier_and_a_private_key)
 
-First add your private key from Apple to the tokengen folder with the name `key.p8` then run:
+2. Use the [Apple Token Generator](https://maps.developer.apple.com/token-maker) to generate your token
 
-`node tokengen`
-
-Follow the prompts. The generated token can then be used for your app. If you want to generate short lived tokens you can refer to the script in tokengen to get an idea of how to do this in node.
+Learn more about MapKit Tokens: [Creating and Using Tokens with MapKit JS
+](https://developer.apple.com/documentation/mapkitjs/creating_and_using_tokens_with_mapkit_js)
 
 ## Storybook
 
