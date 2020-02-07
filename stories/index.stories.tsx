@@ -2,7 +2,7 @@ import React from 'react'
 
 import { storiesOf } from '@storybook/react'
 
-import { Map, MapkitProvider, useMap, Marker } from '../src'
+import { Map, MapkitProvider, useMap, Marker, Annotation } from '../src'
 import devToken from '../devToken'
 
 const UseMapExample = () => {
@@ -63,22 +63,51 @@ storiesOf('Defaults', module)
   .add('tint', () => <Map tokenOrCallback={devToken} tintColor={'#00b64e'} />)
   .add('padding', () => <Map tokenOrCallback={devToken} padding={20} />)
 
-storiesOf('Markers', module).add('adding a marker', () => (
-  <Map
-    tokenOrCallback={devToken}
-    region={{
-      latitude: 47.6754,
-      longitude: -122.2084,
-      latitudeSpan: 0.006,
-      longitudeSpan: 0.006,
-    }}
-  >
-    <Marker latitude={47.6754} longitude={-122.2084} />
-    <Marker
-      latitude={47.6764}
-      longitude={-122.2073}
-      title={'Tea here!'}
-      subtitle={'coffee too ☕'}
-    />
-  </Map>
-))
+storiesOf('Annotations', module)
+  .add('adding a marker', () => (
+    <Map
+      tokenOrCallback={devToken}
+      region={{
+        latitude: 47.6754,
+        longitude: -122.2084,
+        latitudeSpan: 0.006,
+        longitudeSpan: 0.006,
+      }}
+    >
+      <Marker latitude={47.6754} longitude={-122.2084} />
+      <Marker
+        latitude={47.6764}
+        longitude={-122.2073}
+        title={'Tea here!'}
+        subtitle={'coffee too ☕'}
+      />
+    </Map>
+  ))
+  .add('adding a annotation', () => (
+    <Map
+      tokenOrCallback={devToken}
+      region={{
+        latitude: 47.6754,
+        longitude: -122.2084,
+        latitudeSpan: 0.006,
+        longitudeSpan: 0.006,
+      }}
+    >
+      <Annotation latitude={47.6754} longitude={-122.2084}>
+        <div
+          style={{
+            width: 150,
+            height: 150,
+            borderRadius: 10,
+            backgroundColor: 'green',
+            padding: 15,
+            textAlign: 'center',
+            verticalAlign: 'middle',
+            display: 'table-cell',
+          }}
+        >
+          custom annotation
+        </div>
+      </Annotation>
+    </Map>
+  ))
