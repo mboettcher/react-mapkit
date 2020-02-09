@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useMemo } from 'react'
 
 import { storiesOf } from '@storybook/react'
 
@@ -12,6 +12,84 @@ const UseMapExample = () => {
     <>
       <button onClick={() => setRotation(Math.random() * 360)}>rotate!</button>
       <Map {...mapProps} />
+    </>
+  )
+}
+
+const AnnotationExample = () => {
+  const [annotationCounter, setAnnotationCounter] = React.useState(1)
+
+  const annotationContent = useMemo(
+    () => (
+      <div
+        style={{
+          width: 150,
+          height: 150,
+          borderRadius: 10,
+          backgroundColor: 'green',
+          padding: 15,
+          textAlign: 'center',
+          verticalAlign: 'middle',
+          display: 'table-cell',
+        }}
+      >
+        {annotationCounter}
+      </div>
+    ),
+    [annotationCounter],
+  )
+
+  const annotationContent2 = useMemo(
+    () => (
+      <div
+        style={{
+          width: 150,
+          height: 150,
+          borderRadius: 10,
+          backgroundColor: 'red',
+          padding: 15,
+          textAlign: 'center',
+          verticalAlign: 'middle',
+          display: 'table-cell',
+        }}
+      >
+        static
+      </div>
+    ),
+    [],
+  )
+
+  return (
+    <>
+      <button onClick={() => setAnnotationCounter(annotationCounter + 1)}>
+        change annotation text
+      </button>
+      <Map
+        tokenOrCallback={devToken}
+        region={{
+          latitude: 47.6754,
+          longitude: -122.2084,
+          latitudeSpan: 0.006,
+          longitudeSpan: 0.006,
+        }}
+      >
+        <Annotation
+          latitude={47.6759}
+          longitude={-122.2084}
+          // size.width and size.height need to be set to display annotation correctly after re-rendering
+          size={{ width: 180, height: 180 }}
+        >
+          {annotationContent}
+        </Annotation>
+
+        <Annotation
+          latitude={47.6759}
+          longitude={-122.2034}
+          size={{ width: 180, height: 180 }}
+        >
+          {annotationContent2}
+        </Annotation>
+      </Map>
     </>
   )
 }
@@ -83,31 +161,4 @@ storiesOf('Annotations', module)
       />
     </Map>
   ))
-  .add('adding a annotation', () => (
-    <Map
-      tokenOrCallback={devToken}
-      region={{
-        latitude: 47.6754,
-        longitude: -122.2084,
-        latitudeSpan: 0.006,
-        longitudeSpan: 0.006,
-      }}
-    >
-      <Annotation latitude={47.6754} longitude={-122.2084}>
-        <div
-          style={{
-            width: 150,
-            height: 150,
-            borderRadius: 10,
-            backgroundColor: 'green',
-            padding: 15,
-            textAlign: 'center',
-            verticalAlign: 'middle',
-            display: 'table-cell',
-          }}
-        >
-          custom annotation
-        </div>
-      </Annotation>
-    </Map>
-  ))
+  .add('adding a annotation', () => <AnnotationExample />)

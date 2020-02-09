@@ -3,11 +3,7 @@ import ReactDOM from 'react-dom'
 
 import { MapContext } from './Map'
 
-import {
-  //MarkerOptions,
-  createCoordinate,
-  //propsToMarkerConstructionOptions,
-} from './utils'
+import { createCoordinate } from './utils'
 
 type AnnotationProps = {
   latitude: number
@@ -42,6 +38,21 @@ export const Annotation: React.FC<AnnotationProps> = ({
       map.addAnnotation(annotation.current)
     }
   }, [mapkit, map])
+
+  React.useEffect(() => {
+    if (mapkit && map && annotation.current) {
+      map.removeAnnotation(annotation.current)
+
+      // options.size.width and options.size.height need to be set to display annotation correctly after re-rendering
+      annotation.current = new mapkit.Annotation(
+        createCoordinate(latitude, longitude),
+        factory,
+        options,
+      )
+
+      map.addAnnotation(annotation.current)
+    }
+  }, [children])
 
   return null
 }
