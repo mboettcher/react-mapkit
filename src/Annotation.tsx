@@ -9,12 +9,14 @@ type AnnotationProps = {
   latitude: number
   longitude: number
   children: React.ReactElement
+  size: NonNullable<mapkit.AnnotationConstructorOptions['size']>
 } & mapkit.AnnotationConstructorOptions
 
 export const Annotation: React.FC<AnnotationProps> = ({
   latitude,
   longitude,
   children,
+  size,
   ...options
 }) => {
   const { mapkit, map } = React.useContext(MapContext)
@@ -32,7 +34,7 @@ export const Annotation: React.FC<AnnotationProps> = ({
       annotation.current = new mapkit.Annotation(
         createCoordinate(latitude, longitude),
         factory,
-        options,
+        { size, ...options },
       )
 
       map.addAnnotation(annotation.current)
@@ -47,7 +49,7 @@ export const Annotation: React.FC<AnnotationProps> = ({
       annotation.current = new mapkit.Annotation(
         createCoordinate(latitude, longitude),
         factory,
-        options,
+        { size, ...options },
       )
 
       map.addAnnotation(annotation.current)
