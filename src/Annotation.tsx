@@ -36,25 +36,15 @@ export const Annotation: React.FC<AnnotationProps> = ({
         factory,
         { size, ...options },
       )
-
       map.addAnnotation(annotation.current)
     }
-  }, [mapkit, map])
 
-  React.useEffect(() => {
-    if (mapkit && map && annotation.current) {
-      map.removeAnnotation(annotation.current)
-
-      // options.size.width and options.size.height need to be set to display annotation correctly after re-rendering
-      annotation.current = new mapkit.Annotation(
-        createCoordinate(latitude, longitude),
-        factory,
-        { size, ...options },
-      )
-
-      map.addAnnotation(annotation.current)
+    return () => {
+      if (mapkit && map && annotation.current) {
+        map.removeAnnotation(annotation.current)
+      }
     }
-  }, [children])
+  }, [mapkit, map, children, latitude, longitude, size.width, size.height])
 
   return null
 }
